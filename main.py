@@ -2,7 +2,7 @@ student = {}
 course ={}
 
 
-def inputStudent():
+def inputStudent(): 
     nb_student = int(input("Enter the number of student: "))
     for i in range(nb_student):
         name = input(f"Enter the name of the {i+1}th student: ")
@@ -10,6 +10,7 @@ def inputStudent():
         dob = input(f"Enter the dob of {name}: ")
         student[id] ={"infor":(name,dob),"course":{}}
         print("-"*100)
+        
 
 
 def inputCourse():
@@ -23,7 +24,18 @@ def inputCourse():
 
 def inputMark():
     id_course = int(input("Enter the course id that you want to enter mark: "))
+
+    if id_course not in course:
+        print("Course does not exist!")
+        return
+
     id_student =int(input("Enter the student id that you want to enter mark: "))
+
+    if id_student not in student:
+        print("Student does not exist!")
+        return
+    
+    
     mark = list(map(float, input(f"Enter the mark for student {id_student} in course {id_course}: ").split()))
     student[id_student]["course"][id_course] = {
         "name": course[id_course]['name'],
@@ -34,18 +46,31 @@ def inputMark():
 
 def listCourses():
     print("ALL COURSES ARE: ")
+
+    if not course:
+        print("Empty")
+
     for key, value in course.items():
         print(f"Name of course: {value["name"]}, Id: {key}")
     print("-"*100)
 
 def listStudents():
     print("ALL STUDENT ARE: ")
+
+    if not student:
+        print("Empty")
+    
     for key, value in student.items():
         print(f"Name: {value["infor"][0]}, Id: {key}, Dob: {value["infor"][1]}")
 
 
 def show_All_Mark():
     id_course = int(input("Enter the id course that you want to see mark of student: "))
+
+    if id_course not in course:
+        print("Course does not exist!")
+        return
+    
     for key, value in student.items(): 
         print(f"Id: {key}, Name: {value["infor"][0]}, Dob: {value["infor"][1]}, mark: {value["course"][id_course]["mark"]} ")
     print(student)
@@ -61,7 +86,7 @@ while True:
     print("5. Show all course")
     print("6. Show all mark of course")
     print("7. Nothing and exit")
-    n = int(input("What do you want?: "))
+    n = int(input("Choice: "))
     print("="*100)
 
     if n == 7:
