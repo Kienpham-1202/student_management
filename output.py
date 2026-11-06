@@ -68,7 +68,7 @@ def show_Only_Mark(student,course):
     mark = student.mark.get(id_course)
 
 
-    print(f"The mark of {course.name} ({course.id}) of {student.name} is: mark")
+    print(f"The mark of {course.name} ({course.id}) of {student.name} is: {mark}")
 
 
 def calculate_GPA():

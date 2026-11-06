@@ -4,10 +4,20 @@ import output as out
 student = {}
 course = {}
 
+print("Checking students.dat...")
+if inp.decompress_data():
+    print("Decompressed OK")
+    inp.load_students(student)
+    inp.load_courses(course)
+    inp.load_marks(student)
+    print(f"Loaded {len(student)} students, {len(course)} courses")
+else:
+    print("students.dat not found")
 while True:
     n = out.menu()
 
     if n == 8:
+        inp.compress_data()
         print("Goodbye!")
         break
     elif n == 1:
